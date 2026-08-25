@@ -2,7 +2,7 @@ import streamlit as st
 import base64
 import os
 
-# تنظیمات پایه صفحه
+# این دستور حتماً باید اولین خط استریم‌لیت باشد
 st.set_page_config(
     page_title="ثبت عزیزی | سامانه هوشمند خدمات ثبتی",
     page_icon="⚖️",
@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# تابع بارگذاری و تبدیل عکس به Base64
+# تابع پردازش عکس و تبدیل به Base64
 def get_image_base64(image_path):
     if os.path.exists(image_path):
         with open(image_path, "rb") as img_file:
@@ -19,7 +19,6 @@ def get_image_base64(image_path):
 
 img_base64 = get_image_base64("profile.jpg")
 
-# بررسی وجود عکس جهت تنظیم گرادیانت و آواتار
 if img_base64:
     hero_bg_style = f"""
         background: linear-gradient(135deg, rgba(15, 23, 42, 0.90) 0%, rgba(30, 41, 59, 0.82) 100%), 
@@ -32,7 +31,7 @@ else:
     hero_bg_style = "background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);"
     avatar_html = '<div class="profile-avatar-fallback">⚖️</div>'
 
-# تزریق استایل‌های مدرن
+# استایل‌های مدرن
 st.markdown(f"""
 <style>
     @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
@@ -164,7 +163,7 @@ st.markdown(f"""
 </style>
 """, unsafe_allow_html=True)
 
-# هدر با نام اختصاصی «ثبت عزیزی»
+# هدر با عنوان اختصاصی «ثبت عزیزی»
 st.markdown(f"""
 <div class="hero-container">
     {avatar_html}
@@ -176,7 +175,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# تب‌های محتوا
+# تب‌های سامانه
 tab1, tab2, tab3 = st.tabs(["📋 مدارک و راهنمای خدمات", "✍️ ثبت درخواست و مشاوره", "👤 درباره ما و ارتباط"])
 
 with tab1:
@@ -238,7 +237,7 @@ with tab1:
         1. تصویر آخرین آگهی تأسیس و آخرین آگهی تغییرات در روزنامه رسمی
         2. مدارک هویتی اعضای جدید هیئت مدیره یا سهامداران
         3. لیست سهامداران و میزان سهم‌الشرکه
-        4. صورت‌جلسه تنظیم‌شده مج یا هیئت مدیره
+        4. صورت‌جلسه تنظیم‌شده مجمع عمومی یا هیئت مدیره
         """)
     elif service == "اخذ رتبه و گرید پیمانکاری":
         st.markdown("""
@@ -261,7 +260,7 @@ with tab2:
         with col2:
             phone = st.text_input("شماره تلفن همراه (جهت تماس):")
             
-        service_type = st.selectbox("موضوع درخواست:" ["ثبت شرکت", "ثبت برند", "تغییرات شرکت", "کارت بازرگانی", "رتبه‌بندی", "سایر امور حقوقی"])
+        service_type = st.selectbox("موضوع درخواست:", ["ثبت شرکت", "ثبت برند", "تغییرات شرکت", "کارت بازرگانی", "رتبه‌بندی", "سایر امور حقوقی"])
         description = st.text_area("توضیحات تکمیلی (اختیاری):")
         
         submit_btn = st.form_submit_button("🚀 ارسال درخواست")
@@ -274,7 +273,7 @@ with tab2:
     st.markdown('</div>', unsafe_allow_html=True)
 
 with tab3:
-    st.markdown('<div class="glass-card">', unsafe_allow_html=True
+    st.markdown('<div class="glass-card">', unsafe_allow_html=True)
     st.subheader("ارتباط مستقیم با مدیریت")
     st.write("""
     **خدمات تخصصی ثبت عزیزی** با سال‌ها تجربه درخشان در زمینه ثبت شرکت‌ها، ثبت برند و علائم تجاری، کارت بازرگانی، تغییرات و رتبه‌بندی، همراه مطمئن شما از ایده تا ثبت رسمی است.
@@ -285,4 +284,7 @@ with tab3:
     ⏰ **ساعات پاسخگویی:** شنبه تا چهارشنبه ۹ الی ۱۸ | پنجشنبه‌ها ۹ الی ۱۳
     """)
     
-    st.
+    st.markdown("""
+    <a href="tel:09120227577" class="call-btn">📞 تماس تلفنی مستقیم جهت مشاوره</a>
+    """, unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)

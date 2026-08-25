@@ -5,7 +5,7 @@ st.set_page_config(
     page_title="سامانه هوشمند ثبت عزیزی",
     page_icon="⚖️",
     layout="wide",
-    initial_sidebar_state="collapsed"
+   initial_sidebar_state="collapsed"
 )
 
 # استایل CSS کامل، واکنش‌گرا و سازگار با حالت تاریک/روشن

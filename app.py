@@ -27,7 +27,7 @@ if img_base64:
         background-size: cover;
         background-position: center;
     """
-    avatar_html = f'<img src="data:image/jpeg;base64,{img_base64}" class="profile-avatar" alt="خانم عزیزی">'
+    avatar_html = f'<img src="data:image/jpeg;base64,{img_base64}" class="profile-avatar" alt="ثبت عزیزی">'
 else:
     hero_bg_style = "background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);"
     avatar_html = '<div class="profile-avatar-fallback">⚖️</div>'
@@ -83,7 +83,7 @@ st.markdown(f"""
     
     .hero-text h1 {{
         color: #ffffff;
-        font-size: 2.2rem;
+        font-size: 2.3rem;
         font-weight: 800;
         margin: 0 0 10px 0;
         letter-spacing: -0.5px;
@@ -164,13 +164,13 @@ st.markdown(f"""
 </style>
 """, unsafe_allow_html=True)
 
-# هدر با تصویر پرسنلی
+# هدر با نام اختصاصی «ثبت عزیزی»
 st.markdown(f"""
 <div class="hero-container">
     {avatar_html}
     <div class="hero-text">
         <span class="badge">مشاوره تخصصی و امور ثبتی</span>
-        <h1>سامانه ثبتی خانم عزیزی</h1>
+        <h1>ثبت عزیزی</h1>
         <p>ثبت انواع شرکت‌ها، برند و علائم تجاری، تغییرات و رتبه‌بندی با بالاترین دقت حقوقی و پیگیری مستقیم</p>
     </div>
 </div>
@@ -238,7 +238,7 @@ with tab1:
         1. تصویر آخرین آگهی تأسیس و آخرین آگهی تغییرات در روزنامه رسمی
         2. مدارک هویتی اعضای جدید هیئت مدیره یا سهامداران
         3. لیست سهامداران و میزان سهم‌الشرکه
-        4. صورت‌جلسه تنظیم‌شده مجمع عمومی یا هیئت مدیره
+        4. صورت‌جلسه تنظیم‌شده مج یا هیئت مدیره
         """)
     elif service == "اخذ رتبه و گرید پیمانکاری":
         st.markdown("""
@@ -261,7 +261,7 @@ with tab2:
         with col2:
             phone = st.text_input("شماره تلفن همراه (جهت تماس):")
             
-        service_type = st.selectbox("موضوع درخواست:", ["ثبت شرکت", "ثبت برند", "تغییرات شرکت", "کارت بازرگانی", "رتبه‌بندی", "سایر امور حقوقی"])
+        service_type = st.selectbox("موضوع درخواست:" ["ثبت شرکت", "ثبت برند", "تغییرات شرکت", "کارت بازرگانی", "رتبه‌بندی", "سایر امور حقوقی"])
         description = st.text_area("توضیحات تکمیلی (اختیاری):")
         
         submit_btn = st.form_submit_button("🚀 ارسال درخواست")
@@ -274,7 +274,7 @@ with tab2:
     st.markdown('</div>', unsafe_allow_html=True)
 
 with tab3:
-    st.markdown('<div class="glass-card">', unsafe_allow_html=True)
+    st.markdown('<div class="glass-card">', unsafe_allow_html=True
     st.subheader("ارتباط مستقیم با مدیریت")
     st.write("""
     **خدمات تخصصی ثبت عزیزی** با سال‌ها تجربه درخشان در زمینه ثبت شرکت‌ها، ثبت برند و علائم تجاری، کارت بازرگانی، تغییرات و رتبه‌بندی، همراه مطمئن شما از ایده تا ثبت رسمی است.
@@ -285,7 +285,4 @@ with tab3:
     ⏰ **ساعات پاسخگویی:** شنبه تا چهارشنبه ۹ الی ۱۸ | پنجشنبه‌ها ۹ الی ۱۳
     """)
     
-    st.markdown("""
-    <a href="tel:09120227577" class="call-btn">📞 تماس تلفنی مستقیم جهت مشاوره</a>
-    """, unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.

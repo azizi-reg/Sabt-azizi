@@ -1,80 +1,82 @@
 import streamlit as st
 
-# تنظیمات اولیه صفحه
+# تنظیمات اصلی صفحه
 st.set_page_config(
     page_title="سامانه هوشمند ثبت عزیزی",
     page_icon="⚖️",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
-# استایل‌دهی سفارشی، فونت وزیرمتن و راست‌چین (RTL) کامل
+# استایل CSS کامل، واکنش‌گرا و سازگار با حالت تاریک/روشن
 st.markdown("""
 <style>
-    @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/css/vazirmatn.css');
+    @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
     
-    html, body, [class*="css"], .stMarkdown, .stSelectbox, .stButton, .stTextInput, .stTextArea {
-        font-family: 'Vazirmatn', Tahoma, sans-serif !important;
+    * {
+        font-family: 'Vazirmatn', sans-serif !important;
         direction: rtl;
         text-align: right;
     }
     
     .main-header {
         background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-        color: white;
+        color: #ffffff !important;
         padding: 24px;
         border-radius: 12px;
         text-align: center;
         margin-bottom: 25px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
     }
     
-    .main-header h1 {
-        color: #ffffff;
-        font-size: 26px;
-        margin-bottom: 8px;
+    .main-header h1, .main-header p {
+        color: #ffffff !important;
+        text-align: center !important;
     }
     
-    .main-header p {
-        color: #e0e0e0;
-        font-size: 15px;
-        margin: 0;
-    }
-    
-    .card {
-        background-color: #ffffff;
-        border: 1px solid #e2e8f0;
-        border-radius: 10px;
+    /* کارت مدارک با رنگ متن کاملاً واضح و پررنگ */
+    .service-card {
+        background-color: #ffffff !important;
+        color: #111827 !important;
+        border: 2px solid #3b82f6 !important;
+        border-radius: 12px;
         padding: 20px;
+        margin-top: 15px;
         margin-bottom: 20px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
     
-    .service-badge {
-        display: inline-block;
+    .service-card h4 {
+        color: #1e3a8a !important;
+        font-weight: 800 !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .service-card li {
+        color: #1f2937 !important;
+        font-size: 15px !important;
+        line-height: 1.8 !important;
+        font-weight: 500 !important;
+    }
+    
+    .tag {
+        background-color: #dbeafe !important;
+        color: #1e40af !important;
         padding: 4px 12px;
-        background-color: #e0f2fe;
-        color: #0369a1;
-        border-radius: 20px;
+        border-radius: 6px;
         font-size: 13px;
         font-weight: bold;
+        display: inline-block;
         margin-bottom: 12px;
     }
     
-    .stButton>button {
-        width: 100%;
-        background-color: #2563eb;
-        color: white;
-        font-weight: bold;
-        padding: 10px;
-        border-radius: 8px;
-        border: none;
-        transition: 0.3s;
-    }
-    
-    .stButton>button:hover {
-        background-color: #1d4ed8;
-        color: white;
+    .footer {
+        text-align: center;
+        padding: 20px;
+        color: #6b7280;
+        font-size: 13px;
+        border-top: 1px solid #e5e7eb;
+        margin-top: 40px;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -82,12 +84,12 @@ st.markdown("""
 # هدر اصلی سامانه
 st.markdown("""
 <div class="main-header">
-    <h1>سامانه جامع و هوشمند خدمات ثبت عزیزی</h1>
-    <p>مشاوره تخصصی، ثبت شرکت، رتبه‌بندی، تغییرات ثبتی و علائم تجاری با بالاترین دقت و سرعت</p>
+    <h1 style="margin:0; font-size:26px;">⚖️ سامانه جامع و هوشمند خدمات ثبت عزیزی</h1>
+    <p style="margin-top:10px; font-size:15px; opacity:0.95;">مرکز تخصصی ثبت شرکت، رتبه‌بندی پیمانکاری (گرید)، تغییرات شرکتی و ثبت علائم تجاری</p>
 </div>
 """, unsafe_allow_html=True)
 
-# سایدبار اطلاعات تماس و پشتیبانی
+# سایدبار ارتباط با کارشناسان
 with st.sidebar:
     st.header("📞 ارتباط با کارشناسان")
     st.info("""
@@ -96,10 +98,10 @@ with st.sidebar:
     **ایمیل سازمانی:** info@sabt-azizi.ir  
     **ساعات کاری:** شنبه تا چهارشنبه ۹ الی ۱۷
     """)
-    st.markdown("---")
-    st.write("🔒 کلیه اطلاعات ارسالی در این سامانه تحت محافظت و محرمانه تلقی می‌گردد.")
+    st.divider()
+    st.caption("🔒 کلیه اطلاعات ارسالی در این سامانه تحت محافظت و محرمانه تلقی می‌گردد.")
 
-# بدنه اصلی
+# تب‌بندی بخش‌های سامانه
 tab1, tab2, tab3 = st.tabs(["📋 خدمات و چک‌لیست مدارک", "📝 ثبت درخواست مشاوره", "ℹ️ درباره ما"])
 
 with tab1:
@@ -118,8 +120,8 @@ with tab1:
     
     if service_type == "ثبت شرکت با مسئولیت محدود / سهامی خاص":
         st.markdown("""
-        <div class="card">
-            <span class="service-badge">تاسیس شرکت</span>
+        <div class="service-card">
+            <span class="tag">تاسیس شرکت</span>
             <h4>مدارک لازم جهت ثبت شرکت:</h4>
             <ul>
                 <li>تصویر کارت ملی و شناسنامه کلیه اعضای هیئت مدیره و سهامداران</li>
@@ -133,94 +135,101 @@ with tab1:
         
     elif service_type == "اخذ و ارتقاء گرید (رتبه) پیمانکاری":
         st.markdown("""
-        <div class="card">
-            <span class="service-badge">رتبه‌بندی پیمانکاران (سازمان مدیریت)</span>
-            <h4>مدارک لازم جهت اخذ گرید:</h4>
+        <div class="service-card">
+            <span class="tag">رتبه‌بندی پیمانکاران</span>
+            <h4>مدارک لازم جهت اخذ و ارتقاء رتبه:</h4>
             <ul>
-                <li>مدارک کامل ثبتی شرکت (اساسنامه، اظهارنامه/شرکت‌نامه، روزنامه رسمی تاسیس و تغییرات)</li>
-                <li>تصویر مدارک هویتی اعضای هیئت مدیره و مهندسین امتیازآور</li>
-                <li>کپی مدارک تحصیلی کارشناسی و بالاتر مهندسین به همراه گواهی سابقه بیمه معتبر</li>
-                <li>اظهارنامه‌های مالیاتی ۳ سال اخیر به همراه جداول مربوطه</li>
-                <li>تصویر قراردادها و مفاصاحساب پروژه‌های اجرایی جهت امتیاز تجربه کاری</li>
+                <li>مدارک ثبتی کامل شرکت (اساسنامه، اظهارنامه، روزنامه رسمی تاسیس و آخرین تغییرات)</li>
+                <li>مدارک هویتی و تحصیلی مهندسین امتیازآور (حداقل یک نفر با سابقه بیمه مرتبط)</li>
+                <li>گواهی سابقه بیمه تأمین اجتماعی پرسنل و مهندسان شرکت</li>
+                <li>تصویر موافقت‌نامه، قراردادها و مفاصاحساب پروژه‌های قبلی (برای ارتقاء گرید)</li>
+                <li>اظهارنامه مالیاتی و صورت‌های مالی حسابرسی‌شده سال‌های اخیر</li>
             </ul>
         </div>
         """, unsafe_allow_html=True)
         
     elif service_type == "ثبت برند و علامت تجاری":
         st.markdown("""
-        <div class="card">
-            <span class="service-badge">مالکیت معنوی</span>
-            <h4>مدارک لازم جهت ثبت برند و لوگو:</h4>
+        <div class="service-card">
+            <span class="tag">مالکیت معنوی</span>
+            <h4>مدارک لازم جهت ثبت برند و علامت تجاری:</h4>
             <ul>
-                <li>مدارک هویتی متقاضی (شناسنامه و کارت ملی شخص حقیقی یا اسناد شرکت برای شخص حقوقی)</li>
-                <li>تصویر شفاف و با کیفیت از نمونه علامت، لوگو یا طرح گرافیکی</li>
-                <li>مجوز فعالیت (پروانه کسب، پروانه بهره‌برداری، اینماد یا جواز تاسیس)</li>
-                <li>کارت بازرگانی (در صورتی که در نام برند از حروف لاتین استفاده شده باشد)</li>
+                <li>کپی شناسنامه و کارت ملی متقاضی (یا مدارک ثبتی شرکت در صورت ثبت حقوقی)</li>
+                <li>نمونه تصویر لوگو و علامت تجاری در ابعاد ۱۰×۱۰ سانتی‌متر</li>
+                <li>مجوز فعالیت مرتبط (پروانه بهره‌برداری، جواز تاسیس، پروانه کسب یا کارت بازرگانی)</li>
+                <li>کارت بازرگانی (در صورتی که برند دارای حروف لاتین باشد)</li>
+                <li>وکالت‌نامه رسمی در صورت پیگیری توسط وکیل قانونی</li>
             </ul>
         </div>
         """, unsafe_allow_html=True)
         
     elif service_type == "تغییرات و تصمیمات شرکت‌ها":
         st.markdown("""
-        <div class="card">
-            <span class="service-badge">امور مجامع و تغییرات</span>
-            <h4>مدارک لازم جهت تنظیم صورتجلسات:</h4>
+        <div class="service-card">
+            <span class="tag">صورتجلسات و تغییرات</span>
+            <h4>مدارک لازم جهت ثبت تغییرات:</h4>
             <ul>
-                <li>تصویر آخرین روزنامه رسمی حاوی اسامی مدیران و دارندگان حق امضا</li>
-                <li>لیست کامل سهامداران / شرکا و میزان سهم هر فرد</li>
-                <li>مشخصات تغییرات مد نظر (تغییر آدرس، تمدید هیئت مدیره، افزایش/کاهش سرمایه، ورود یا خروج شریک)</li>
+                <li>کپی مدارک هویتی کلیه شرکا، سهامداران و بازرسین</li>
+                <li>تصویر آخرین روزنامه رسمی حاوی آخرین هیئت مدیره و سرمایه</li>
+                <li>تنظیم و امضای صورتجلسه مجمع عمومی فوق‌العاده یا عادی به‌طور فوق‌العاده</li>
+                <li>لیست سهامداران حاضر در جلسه و میزان سهام هر کدام</li>
             </ul>
         </div>
         """, unsafe_allow_html=True)
         
     elif service_type == "کارت بازرگانی و کد اقتصادی":
         st.markdown("""
-        <div class="card">
-            <span class="service-badge">امور بازرگانی</span>
-            <h4>مدارک لازم:</h4>
+        <div class="service-card">
+            <span class="tag">امور مالی و بازرگانی</span>
+            <h4>مدارک لازم جهت اخذ کارت بازرگانی:</h4>
             <ul>
-                <li>کارت ملی، شناسنامه و حداقل مدرک تحصیلی دیپلم متقاضی / مدیرعامل</li>
-                <li>گواهی عدم سوء پیشینه و داشتن حداقل سن ۲۴ سال تمام</li>
-                <li>سند مالکیت یا اجاره‌نامه هولوگرام‌دار اداری یا تجاری</li>
-                <li>حساب بانکی جاری معتبر با گردش مالی مناسب</li>
+                <li>سند مالکیت یا اجاره‌نامه هولوگرام‌دار به نام متقاضی یا شرکت</li>
+                <li>گواهی عدم سوء پیشینه و اصل کارت ملی و شناسنامه</li>
+                <li>گواهی پلمپ دفاتر تجاری و تاییدیه حساب بانکی جاری</li>
+                <li>حداقل سن ۲۳ سال تمام و مدرک تحصیلی مرتبط (حداقل دیپلم)</li>
             </ul>
         </div>
         """, unsafe_allow_html=True)
 
 with tab2:
-    st.subheader("فرم ارسال مشخصات و درخواست پیگیری")
-    with st.form("request_form"):
+    st.subheader("درخواست مشاوره تخصصی")
+    st.write("لطفاً مشخصات خود را وارد کنید تا کارشناسان ثبت عزیزی با شما تماس بگیرند:")
+    
+    with st.form(key="consulting_form"):
         col1, col2 = st.columns(2)
         with col1:
-            full_name = st.text_input("نام و نام خانوادگی:")
-            phone_num = st.text_input("شماره همراه (جهت تماس کارشناس):")
+            name = st.text_input("نام و نام خانوادگی *")
+            company = st.text_input("نام شرکت / موسسه (اختیاری)")
         with col2:
-            company_name = st.text_input("نام مجموعه یا شرکت (اختیاری):")
-            req_type = st.selectbox("موضوع درخواست:", [
-                "مشاوره رایگان تلفنی",
-                "ثبت شرکت",
-                "اخذ رتبه و گرید",
-                "ثبت برند و علامت تجاری",
-                "سایر امور ثبتی و حقوقی"
-            ])
+            phone = st.text_input("شماره تلفن همراه *")
+            service_needed = st.selectbox(
+                "خدمت درخواستی",
+                ["ثبت شرکت", "رتبه‌بندی پیمانکاری", "ثبت برند", "تغییرات شرکتی", "سایر موارد"]
+            )
+            
+        desc = st.text_area("توضیحات تکمیلی یا سوال مورد نظر:")
+        submit = st.form_submit_button("ثبت و ارسال درخواست مشاوره")
         
-        description = st.text_area("توضیحات تکمیلی یا سوالات شما:")
-        submit_btn = st.form_submit_button("ثبت و ارسال درخواست")
-        
-        if submit_btn:
-            if full_name.strip() and phone_num.strip():
-                st.success(f"متقاضی گرامی {full_name}، اطلاعات شما با موفقیت ثبت گردید. کارشناسان ما به زودی با شماره {phone_num} تماس خواهند گرفت.")
+        if submit:
+            if name.strip() and phone.strip():
+                st.success(f"✅ با تشکر جناب/سرکار {name}، درخواست شما با موفقیت ثبت شد. کارشناسان ما به زودی با شماره {phone} تماس خواهند گرفت.")
             else:
-                st.error("لطفاً نام و شماره همراه خود را وارد نمایید.")
+                st.error("⚠️ لطفاً نام و شماره همراه خود را حتماً وارد نمایید.")
 
 with tab3:
     st.subheader("درباره گروه خدمات ثبتی عزیزی")
     st.write("""
-    مجموعه **ثبت عزیزی** با کادری مجرب از کارشناسان حقوقی و ثبتی، ارائه‌دهنده خدمات تخصصی در زمینه‌های ثبت انواع شرکت‌ها، رتبه‌بندی و اخذ صلاحیت پیمانکاری، ثبت برند و طرح‌های صنعتی، پلمپ دفاتر و تغییرات سازمانی می‌باشد.
+    **ثبت عزیزی** با سال‌ها تجربه درخشان در حوزه حقوق تجارت، خدمات ثبتی و رتبه‌بندی، همراه مطمئن کارآفرینان و صاحبان کسب‌وکار در سراسر کشور است.
     
-    هدف ما ارائه خدماتی شفاف، سریع و قانونی با مناسب‌ترین تعرفه برای رونق کسب‌وکار شماست.
+    🎯 **اهداف ما:**
+    - ارائه خدمات سریع، شفاف و قانونی
+    - ارتقای رتبه و اعتبار شرکت‌های پیمانکاری و مشاور
+    - صیانت از برند و نشان تجاری شما
     """)
 
 # فوتر
-st.markdown("---")
-st.caption("تمامی حقوق مادی و معنوی برای سامانه ثبت عزیزی محفوظ است © ۲۰۲۶")
+st.markdown("""
+<div class="footer">
+    حقوق مادی و معنوی برای سامانه ثبت عزیزی محفوظ است © ۲۰۲۶
+</div>
+""", unsafe_allow_html=True)
